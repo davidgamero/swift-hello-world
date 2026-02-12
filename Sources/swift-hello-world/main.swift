@@ -1,11 +1,10 @@
-import Kitura
+import Vapor
 
+let app = Application()
+defer { app.shutdown() }
 
-let router = Router()
-router.get("/") { request, response, next in 
-    response.send("Hello world!")
-    next()
+app.get { _ in
+    "Hello world!"
 }
 
-Kitura.addHTTPServer(onPort: 8080, with: router)
-Kitura.run()
+try app.run()
